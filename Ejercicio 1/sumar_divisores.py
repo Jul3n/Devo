@@ -1,8 +1,11 @@
 def sumar_divisores(pX):
-    #Precondición: Todos los números de pX serán positivos.
+    #Precondición: Todos los números de pX serán enteros positivos. Si son negativos se realizará el cálculo en |pX| (Valor absoluto).
     #Postcondición: Se ha devuelto la suma de sus divisores bajo la siguiente premisa: 
         #SUMA > pX: No seguimos puesto que ya está confirmado que es ABUNDANTE.
         #SUMA <= pX: Hemos llegado a pX/2 (todos los divisores de X estarás siempre entre 1 y X/2) sin que SUMA exceda pX (PERFECTO o DEFECTIVO).
+    
+    if pX < 0: #Si el valor en negativo lo calcularemos en valor absoluto.
+        pX=pX*(-1)
     if pX==1: #Si pX es 1 no hacemos nada ya que, por definición, el resultado solo será 1.
         return 1
     else:
