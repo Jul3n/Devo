@@ -6,7 +6,7 @@ def sumar_divisores(pX):
     
     if pX < 0: #Si el valor en negativo lo calcularemos en valor absoluto.
         pX=pX*(-1)
-    if pX==1: #Si pX es 1 no hacemos nada ya que, por definición, el resultado solo será 1.
+    if (pX==1) or (pX==-1): #Si pX es 1 no hacemos nada ya que, por definición, el resultado solo será 1.
         return 1
     else:
         div=1 #Inicializamos el divisor a uno.
