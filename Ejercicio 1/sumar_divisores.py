@@ -5,8 +5,8 @@ def sumar_divisores(pX):
         #SUMA <= pX: Hemos llegado a pX/2 (todos los divisores de X estarás siempre entre 1 y X/2) sin que SUMA exceda pX (PERFECTO o DEFECTIVO).
     
     if pX < 0: #Si el valor en negativo lo calcularemos en valor absoluto.
-        pX=pX*(-1)
-    if (pX==1) or (pX==-1): #Si pX es 1 no hacemos nada ya que, por definición, el resultado solo será 1.
+        pX = pX*-1
+    if (pX==1): #Si pX es 1 no hacemos nada ya que, por definición, el resultado solo será 1.
         return 1
     else:
         div=1 #Inicializamos el divisor a uno.
