@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Usando highcharts </title>
+		<meta charset="utf-8" />
+
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			crossorigin="anonymous">
+		</script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/series-label.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/modules/export-data.js"></script>
+		<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	</head>
+	<body>
+		<p>Conjunto de datos: http://s3.amazonaws.com/logtrust-static/test/test/data2.json</p>
+		<script type="text/javascript">
+			$.ajax({
+				url: 'http://s3.amazonaws.com/logtrust-static/test/test/data2.json',
+				type: 'GET',
+				async: true, 
+				dataType: 'json',
+				    success: function (data) {
+						sumas = [0,0,0];
+						$.each(data, function(index, value) {
+							var date = new Date(value.myDate);
+							switch(value.categ.toUpperCase()) {
+								case "CAT 1":
+									sumas[0] = sumas[0] + value.val;
+									break;
+								case "CAT 2":
+									sumas[1] = sumas[1] + value.val;
+									break;
+								case "CAT 3":
+									sumas[2] = sumas[2] + value.val;
+									break;
+							}
+						});
+
+						$('#cat1').highcharts({
+							chart: {
+								type: 'pie'
+							},
+							title: {
+								text: 'Gráfica de porcentajes'
+							},
+							tooltip: {
+								pointFormat: '{series.data}: <b>{point.percentage:.4f}%</b>'
+							},
+							plotOptions: {
+								pie: {
+									allowPointSelect: true,
+									cursor: 'pointer',
+									dataLabels: {
+										enabled: true,
+										format: '<b>{point.name}</b>: {point.percentage:.4f} %'
+									},
+									showInLegend: true
+								}
+							},
+							series: [{
+								name: 'series',
+								colorByPoint: true,
+								data: sumas
+							}],
+						  });
+					}
+				});
+		</script>
+		<div id="cat1"></div>
+		<div id="cat2"></div>
+		<div id="cat3"></div>
+	</body>
+</html>
